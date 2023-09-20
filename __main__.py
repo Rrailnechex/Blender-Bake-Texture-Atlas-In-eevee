@@ -12,8 +12,8 @@ bl_info = {
     "warning": "",
     "doc_url": "https://github.com/Rrailnechex/Blender-Bake-Texture-Atlas-In-eevee",
     "category": "Render",
-    # "support": "EXPERIMENTAL",
-    "support": 'COMMUNITY',
+    "support": "EXPERIMENTAL",
+    # "support": 'COMMUNITY',
 
 }
 
