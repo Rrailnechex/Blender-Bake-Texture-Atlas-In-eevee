@@ -16,10 +16,6 @@ bl_info = {
 }
 
 
-# TODO: fix save path (it goes to default)
-# TODO: fix texture naming (they are messed up)
-# TODO: cameras render ammount (its x - 1)
-
 ################################################################
 # Vars
 
@@ -119,10 +115,9 @@ class Baker():
 
         for i in range(len(cameras_names_to_render)):
 
-            file_base_name = bpy.context.scene.camera.name
-
             cam = cameras_names_to_render[i]
-            bpy.context.scene.camera = cam  # switch to nexy camera
+            bpy.context.scene.camera = cam
+            file_base_name = bpy.context.scene.camera.name
 
             procedures.Albedo(node_group_name, save_path, file_base_name)
             procedures.ORM(node_group_name, save_path, file_base_name)
@@ -131,9 +126,10 @@ class Baker():
     def performe_baking(self):
         # enter_bake_mode
         Baker.BSDF_baker_switcher(node_group_name, True)
+        oroginal_save_path = os.path.dirname(
+            bpy.context.scene.render.filepath)
 
-        Baker.bake_selected_cameras(node_group_name, os.path.dirname(
-            bpy.context.scene.render.filepath))
+        Baker.bake_selected_cameras(node_group_name, oroginal_save_path)
 
         # exit_bake_mode
         Baker.BSDF_baker_switcher(node_group_name, False)
