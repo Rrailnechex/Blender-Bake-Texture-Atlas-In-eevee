@@ -16,9 +16,6 @@ bl_info = {
     # "support": 'COMMUNITY',
 
 }
-# Modules Installed () from 'X:\\DownloadsFromAllBrousers\\Blender-Bake-Texture-Atlas-In-eevee-main(2).zip'
-# into 'C:\\Users\\Игорь\\AppData\\Roaming\\Blender Foundation\\Blender\\3.3\\scripts\\addons'
-
 
 ################################################################
 # Vars
