@@ -1,4 +1,4 @@
-| Disclamer!!! This script was created to serve my pipline, which is about creating trim textures in blender and rendering tham to use in unity. btw ist free for everything lol. but now i dont recomend you to use it cz it change schene settings
+> Disclamer!!! This script was created to serve my pipline, which is about creating trim textures in blender and rendering tham to use in unity. btw ist free for everything lol. but now i dont recomend you to use it cz it change schene settings
 
 # Setup
 * Get master shader group (Baker.MainShader() currently not included)
