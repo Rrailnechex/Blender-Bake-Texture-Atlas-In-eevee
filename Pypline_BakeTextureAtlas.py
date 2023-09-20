@@ -1,4 +1,3 @@
-
 import os
 import bpy
 from easybpy import *
@@ -6,13 +5,14 @@ from easybpy import *
 bl_info = {
     "name": "Pipline - Bake Texture Atlas",
     "author": "Rrailnechex",
-    "version": (1, 0),
+    "version": (0, 3),
     "blender": (2, 80, 0),
     "location": "View3D > Properties > Bake TA",
     "description": "bake trim textures to my pipline",
     "warning": "",
     "doc_url": "",
     "category": "Baking",
+    "support": "EXPERIMENTAL",
 }
 
 
