@@ -5,8 +5,8 @@ import bpy
 bl_info = {
     "name": "Pipline - Bake Texture Atlas",
     "author": "Rrailnechex",
-    "version": (0, 3),
-    "blender": (3, 3, 0),
+    "version": (0, 0, 1),
+    "blender": (3, 0, 0),
     "description": "bake trim textures to my pipline",
     "location": "View3D > Properties > Bake TA",
     "warning": "",
@@ -16,6 +16,8 @@ bl_info = {
     # "support": 'COMMUNITY',
 
 }
+# Modules Installed () from 'X:\\DownloadsFromAllBrousers\\Blender-Bake-Texture-Atlas-In-eevee-main(2).zip'
+# into 'C:\\Users\\Игорь\\AppData\\Roaming\\Blender Foundation\\Blender\\3.3\\scripts\\addons'
 
 
 ################################################################
@@ -230,13 +232,19 @@ _classes = [BAKER_TA_main_panel,
 
 
 def register():
-    for cls in _classes:
-        bpy.utils.register_class(cls)
+    bpy.utils.register_class(BAKER_TA_main_panel)
+    bpy.utils.register_class(RENDER_OT_MULTIPLE_TA)
+
+    # for cls in _classes:
+    #     bpy.utils.register_class(cls)
 
 
 def unregister():
-    for cls in _classes:
-        bpy.utils.unregister_class(cls)
+    bpy.utils.unregister_class(BAKER_TA_main_panel)
+    bpy.utils.unregister_class(RENDER_OT_MULTIPLE_TA)
+
+    # for cls in _classes:
+    #     bpy.utils.unregister_class(cls)
 
 
 if __name__ == "__main__":
