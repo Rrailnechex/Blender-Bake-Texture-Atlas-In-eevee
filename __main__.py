@@ -7,12 +7,14 @@ bl_info = {
     "author": "Rrailnechex",
     "version": (0, 3),
     "blender": (2, 80, 0),
-    "location": "View3D > Properties > Bake TA",
     "description": "bake trim textures to my pipline",
+    "location": "View3D > Properties > Bake TA",
     "warning": "",
-    "doc_url": "",
-    "category": "Baking",
-    "support": "EXPERIMENTAL",
+    "doc_url": "https://github.com/Rrailnechex/Blender-Bake-Texture-Atlas-In-eevee",
+    "category": "Render",
+    # "support": "EXPERIMENTAL",
+    "support": 'COMMUNITY',
+
 }
 
 
@@ -218,17 +220,18 @@ class procedures():
 
 ################################################################
 # Registration
-classes = (BAKER_TA_main_panel,
-           RENDER_OT_MULTIPLE_TA)
+_classes = [BAKER_TA_main_panel,
+            RENDER_OT_MULTIPLE_TA,
+            ]
 
 
 def register():
-    for cls in classes:
+    for cls in _classes:
         bpy.utils.register_class(cls)
 
 
 def unregister():
-    for cls in classes:
+    for cls in _classes:
         bpy.utils.unregister_class(cls)
 
 
