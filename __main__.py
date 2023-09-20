@@ -1,12 +1,12 @@
 import os
 import bpy
-from easybpy import *
+# from easybpy import *
 
 bl_info = {
     "name": "Pipline - Bake Texture Atlas",
     "author": "Rrailnechex",
     "version": (0, 3),
-    "blender": (2, 80, 0),
+    "blender": (3, 3, 0),
     "description": "bake trim textures to my pipline",
     "location": "View3D > Properties > Bake TA",
     "warning": "",
@@ -113,7 +113,7 @@ class Baker():
 
     def bake_selected_cameras(node_group_name, save_path):
 
-        cameras_names_to_render = so()
+        cameras_names_to_render = bpy.context.selected_objects
 
         for i in range(len(cameras_names_to_render)):
 
@@ -146,6 +146,10 @@ class procedures():
 
         point1 = node_group.nodes[node_from]
         point2 = node_group.nodes[node_to]
+
+        def create_node_link(point1, point2):
+            links = point1.id_data.links
+            return links.new(point1, point2)
 
         create_node_link(point1.outputs[0], point2.inputs[0])
 
