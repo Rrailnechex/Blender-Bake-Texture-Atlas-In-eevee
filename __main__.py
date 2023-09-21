@@ -17,6 +17,15 @@ bl_info = {
 
 }
 
+# TODO: normals are noisy after backing - try to disable AO and save as .png 16
+# TODO: create packed addon
+# TODO: create authomatick setup for bg plane and BGPlane() material
+# TODO: create authomatick setup for Main sheder and MAinShader() material
+# TODO: handle render settings properly
+# TODO:
+# TODO:
+
+
 ################################################################
 # Vars
 
