@@ -90,20 +90,21 @@ class RENDER_OT_MULTIPLE_TA(bpy.types.Operator):
 ############################
 # Bake handlers
 
+# Work only as installed addon
+# class ProgressBar():
 
-class ProgressBar():
+#     ammount_of_rander_cycles = len(bpy.context.selected_objects) * 3
+#     progressbar_one_unit = int(100 / ammount_of_rander_cycles)
 
-    ammount_of_rander_cycles = len(bpy.context.selected_objects) * 3
-    progressbar_one_unit = 100 / ammount_of_rander_cycles
+#     def show_progress_bar(context):
+#         wm = context.window_manager
+#         wm.progress_begin(0, 100)  # Set the range of the progress bar (0-100)
+#         wm.progress_update(0)  # Initialize the progress bar
 
-    def show_progress_bar(context):
-        wm = context.window_manager
-        wm.progress_begin(0, 100)  # Set the range of the progress bar (0-100)
-        wm.progress_update(0)  # Initialize the progress bar
-
-    def hide_progress_bar(context):
-        wm = context.window_manager
-        wm.progress_end()  # Close the progress bar
+#     def hide_progress_bar(context):
+#         wm = context.window_manager
+#         wm.progress_end()  # Close the progress bar
+        # bpy.ops.wm.progress_update(ProgressBar.progressbar_one_unit)
 
 
 class Baker():
@@ -141,11 +142,8 @@ class Baker():
             file_base_name = bpy.context.scene.camera.name
 
             procedures.Albedo(node_group_name, save_path, file_base_name)
-            bpy.ops.wm.progress_update(ProgressBar.progressbar_one_unit)
             procedures.ORM(node_group_name, save_path, file_base_name)
-            bpy.ops.wm.progress_update(ProgressBar.progressbar_one_unit)
             procedures.Normal(node_group_name, save_path, file_base_name)
-            bpy.ops.wm.progress_update(ProgressBar.progressbar_one_unit)
 
     def performe_baking(self):
         # enter_bake_mode
@@ -175,9 +173,6 @@ class procedures():
 
         create_node_link(point1.outputs[0], point2.inputs[0])
 
-    # def get_active_camera() -> object:
-    #     return bpy.context.scene.camera
-
     def BSDF_baker_switcher(node_group_name: str, switch: bool) -> None:
         if switch:
             procedures.link_switcher(node_group_name,
@@ -187,6 +182,9 @@ class procedures():
                 node_group_name, "OutPreviewBSF", "OutPreview")
 
     def Albedo(node_group_name: str, save_path: str, file_base_name: str) -> None:
+
+        bpy.context.scene.render.image_settings.color_depth = '8'
+        bpy.context.scene.eevee.use_gtao = False
 
         bpy.context.scene.view_settings.view_transform = 'Standard'
         bpy.context.scene.view_settings.look = 'None'
@@ -209,6 +207,9 @@ class procedures():
 
     def ORM(node_group_name: str, save_path: str, file_base_name: str) -> None:
 
+        bpy.context.scene.render.image_settings.color_depth = '8'
+        bpy.context.scene.eevee.use_gtao = False
+
         bpy.context.scene.view_settings.view_transform = 'Raw'
         bpy.context.scene.view_settings.look = 'None'
         bpy.context.scene.render.engine = 'BLENDER_EEVEE'
@@ -227,6 +228,9 @@ class procedures():
         bpy.ops.render.render(write_still=True)
 
     def Normal(node_group_name: str, save_path: str, file_base_name: str) -> None:
+
+        bpy.context.scene.render.image_settings.color_depth = '16'
+        bpy.context.scene.eevee.use_gtao = False
 
         bpy.context.scene.view_settings.view_transform = 'Raw'
         bpy.context.scene.view_settings.look = 'None'
