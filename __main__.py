@@ -79,19 +79,31 @@ class RENDER_OT_MULTIPLE_TA(bpy.types.Operator):
 
     def execute(self, context):
 
-        # # Access the string parameter from the scene properties
-        # node_group_name = context.scene.node_group_name
-
-        # # Your code that uses the string parameter here
-        # self.report({'INFO'}, f"You entered: {node_group_name}")
-
-        # add_suffix_to_name(so(), node_group_name, "_")
+        ProgressBar.show_progress_bar(context)
 
         Baker.performe_baking(self)
+
+        ProgressBar.hide_progress_bar(context)
+
         return {'FINISHED'}
 
 ############################
 # Bake handlers
+
+
+class ProgressBar():
+
+    ammount_of_rander_cycles = len(bpy.context.selected_objects) * 3
+    progressbar_one_unit = 100 / ammount_of_rander_cycles
+
+    def show_progress_bar(context):
+        wm = context.window_manager
+        wm.progress_begin(0, 100)  # Set the range of the progress bar (0-100)
+        wm.progress_update(0)  # Initialize the progress bar
+
+    def hide_progress_bar(context):
+        wm = context.window_manager
+        wm.progress_end()  # Close the progress bar
 
 
 class Baker():
@@ -100,7 +112,6 @@ class Baker():
     # global save_path
 
     node_group_name = bpy.context.scene.node_group_name
-    # save_path = os.path.dirname(bpy.context.scene.render.filepath)
 
     def BSDF_baker_switcher(node_group_name: str, switch: bool) -> None:
         if switch:
@@ -130,8 +141,11 @@ class Baker():
             file_base_name = bpy.context.scene.camera.name
 
             procedures.Albedo(node_group_name, save_path, file_base_name)
+            bpy.ops.wm.progress_update(ProgressBar.progressbar_one_unit)
             procedures.ORM(node_group_name, save_path, file_base_name)
+            bpy.ops.wm.progress_update(ProgressBar.progressbar_one_unit)
             procedures.Normal(node_group_name, save_path, file_base_name)
+            bpy.ops.wm.progress_update(ProgressBar.progressbar_one_unit)
 
     def performe_baking(self):
         # enter_bake_mode
