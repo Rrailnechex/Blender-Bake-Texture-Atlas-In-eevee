@@ -2,15 +2,32 @@
 
 **Disclaimer:** This script was initially created to streamline my pipeline for creating trimmed textures in Blender and rendering them for use in Unity. It is offered free for general use; however, please be cautious as it modifies scene render settings.
 
+> TODs:
+> 
+> 1. TODO: normals are noisy after backing - try to disable AO and save as .png 16 
+>
+> 1. TODO: create packed addon
+>
+> 1. TODO: create authomatick setup for bg plane and BGPlane() material
+>
+> 1. TODO: create authomatick setup for Main sheder and MAinShader() materi
+>
+> 1. TODO: handle render settings properly
+
+
+
 ## Setup
 
 
 1. **Lunch script via blenders script editor.**
-2. **Setup Master Shader Group:** Ad use it insted `Principled BSDF`. Note that `Baker.MainShader()` is not currently included.
+2. **Setup Master Shader Group:** Ad use it insted `Principled BSDF`. Append `Baker.MainShader()` form assets.blend.
 
-3. **Create Layered Scene:** Set up your scene like layered cake: camera. objects, background plane. Please note that `Baker.BGPlane()` is not currently included in the script.
+3. **Create Layered Scene:** Set up your scene like layered cake: camera. objects, background plane. Append `Baker.BGPlane()` form assets.blend.
 
 ## How to Use
+
+Create suches burger:
+![Alt text](setup.png)
 
 1. **Enter Main Shader Name:** Provide the name of the main shader in your project. This allows the script to switch connections within the shader and render different passes as required.
 
@@ -18,4 +35,5 @@
 
 3. **Set Camera Name to Texture Atlas  Name:** Ensure that each selected camera has a unique name. The script will append a postfix to each image file, using the camera's name as the base.
 
-4. **Bake:** Execute the script to initiate the texture trimming process. The script will work its magic, leveraging your provided settings and the master shader group.
+4. **Bake:** Execute the script to get this: ![Alt text](bake_result.png)
+   
