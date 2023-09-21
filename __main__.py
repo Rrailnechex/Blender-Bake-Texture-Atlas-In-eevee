@@ -17,13 +17,10 @@ bl_info = {
 
 }
 
-# TODO: normals are noisy after backing - try to disable AO and save as .png 16
-# TODO: create packed addon
+# TODO: handle render settings properly
 # TODO: create authomatick setup for bg plane and BGPlane() material
 # TODO: create authomatick setup for Main sheder and MAinShader() material
-# TODO: handle render settings properly
-# TODO:
-# TODO:
+# TODO: create packed addon
 
 
 ################################################################
@@ -79,11 +76,11 @@ class RENDER_OT_MULTIPLE_TA(bpy.types.Operator):
 
     def execute(self, context):
 
-        ProgressBar.show_progress_bar(context)
+        # ProgressBar.show_progress_bar(context)
 
         Baker.performe_baking(self)
 
-        ProgressBar.hide_progress_bar(context)
+        # ProgressBar.hide_progress_bar(context)
 
         return {'FINISHED'}
 
