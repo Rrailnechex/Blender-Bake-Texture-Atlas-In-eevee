@@ -5,8 +5,8 @@ import bpy
 bl_info = {
     "name": "Pipline - Bake Texture Atlas",
     "author": "Rrailnechex",
-    "version": (0, 0, 1),
-    "blender": (3, 0, 0),
+    "version": (0, 0, 2),
+    "blender": (3, 3, 0),
     "description": "bake trim textures to my pipline",
     "location": "View3D > Properties > Bake TA",
     "warning": "",
@@ -21,6 +21,7 @@ bl_info = {
 # TODO: create authomatick setup for bg plane and BGPlane() material
 # TODO: create authomatick setup for Main sheder and MAinShader() material
 # TODO: create packed addon
+# TODO: add ability to bake anything in eevee. Convert mesh to UV > create new attributes to store original world position, normals, etc > bake
 
 
 ################################################################
@@ -66,22 +67,23 @@ class BAKER_TA_main_panel(bpy.types.Panel):
         row.operator("shader.render_multiple_ta",
                      text="Bake texture atlases")
 
-# Work only as installed addon
-# class ProgressBar():
 
-#     ammount_of_rander_cycles = len(bpy.context.selected_objects) * 3
-#     progressbar_one_unit = int(100 / ammount_of_rander_cycles)
+'''Work only as installed addon
+class ProgressBar():
 
-#     def show_progress_bar(context):
-#         wm = context.window_manager
-#         wm.progress_begin(0, 100)  # Set the range of the progress bar (0-100)
-#         wm.progress_update(0)  # Initialize the progress bar
+    ammount_of_rander_cycles = len(bpy.context.selected_objects) * 3
+    progressbar_one_unit = int(100 / ammount_of_rander_cycles)
 
-#     def hide_progress_bar(context):
-#         wm = context.window_manager
-#         wm.progress_end()  # Close the progress bar
-        # bpy.ops.wm.progress_update(ProgressBar.progressbar_one_unit)
+    def show_progress_bar(context):
+        wm = context.window_manager
+        wm.progress_begin(0, 100)  # Set the range of the progress bar (0-100)
+        wm.progress_update(0)  # Initialize the progress bar
 
+    def hide_progress_bar(context):
+        wm = context.window_manager
+        wm.progress_end()  # Close the progress bar
+        bpy.ops.wm.progress_update(ProgressBar.progressbar_one_unit)
+'''
 ################################################################
 # Button action
 
@@ -118,14 +120,15 @@ class Baker():
             procedures.link_switcher(
                 node_group_name, "OutPreviewBSF", "OutPreview")
 
-    # def do_in_bake_mode(func):
-    #     # enter_bake_mode
-    #     Baker.BSDF_baker_switcher(node_group_name, True)
+    """ def do_in_bake_mode(func):
+        # enter_bake_mode
+        Baker.BSDF_baker_switcher(node_group_name, True)
 
-    #     func()
+        func()
 
-    #     # exit_bake_mode
-    #     Baker.BSDF_baker_switcher(node_group_name, False)
+        # exit_bake_mode
+        Baker.BSDF_baker_switcher(node_group_name, False)
+    """
 
     def bake_selected_cameras(node_group_name, save_path):
 

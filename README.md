@@ -2,20 +2,6 @@
 
 **Disclaimer:** This script was initially created to streamline my pipeline for creating trimmed textures in Blender and rendering them for use in Unity. It is offered free for general use; however, please be cautious as it modifies scene render settings.
 
-> TODs:
-> 
-> 1. TODO: normals are noisy after backing - try to disable AO and save as .png 16 
->
-> 1. TODO: create packed addon
->
-> 1. TODO: create authomatick setup for bg plane and BGPlane() material
->
-> 1. TODO: create authomatick setup for Main sheder and MAinShader() materi
->
-> 1. TODO: handle render settings properly
-
-
-
 ## Setup
 
 
