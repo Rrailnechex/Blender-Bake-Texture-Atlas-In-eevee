@@ -2,6 +2,8 @@
 
 **Disclaimer:** This script was initially created to streamline my pipeline for creating trimmed textures in Blender and rendering them for use in Unity. It is offered free for general use; however, please be cautious as it modifies scene render settings.
 
+# Dicumentation is for myself actualy
+
 ## Setup
 
 
@@ -21,5 +23,7 @@ Create suches burger:
 
 3. **Set Camera Name to Texture Atlas  Name:** Ensure that each selected camera has a unique name. The script will append a postfix to each image file, using the camera's name as the base.
 
-4. **Bake:** Execute the script to get this: ![Alt text](bake_result.png)
+4. **Bake:** Execute the script to get this: 
+
+![Alt text](bake_result.png)
    
