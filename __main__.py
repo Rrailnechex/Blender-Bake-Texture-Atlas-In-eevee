@@ -66,6 +66,22 @@ class BAKER_TA_main_panel(bpy.types.Panel):
         row.operator("shader.render_multiple_ta",
                      text="Bake texture atlases")
 
+# Work only as installed addon
+# class ProgressBar():
+
+#     ammount_of_rander_cycles = len(bpy.context.selected_objects) * 3
+#     progressbar_one_unit = int(100 / ammount_of_rander_cycles)
+
+#     def show_progress_bar(context):
+#         wm = context.window_manager
+#         wm.progress_begin(0, 100)  # Set the range of the progress bar (0-100)
+#         wm.progress_update(0)  # Initialize the progress bar
+
+#     def hide_progress_bar(context):
+#         wm = context.window_manager
+#         wm.progress_end()  # Close the progress bar
+        # bpy.ops.wm.progress_update(ProgressBar.progressbar_one_unit)
+
 ################################################################
 # Button action
 
@@ -84,26 +100,9 @@ class RENDER_OT_MULTIPLE_TA(bpy.types.Operator):
 
         return {'FINISHED'}
 
+
 ############################
 # Bake handlers
-
-# Work only as installed addon
-# class ProgressBar():
-
-#     ammount_of_rander_cycles = len(bpy.context.selected_objects) * 3
-#     progressbar_one_unit = int(100 / ammount_of_rander_cycles)
-
-#     def show_progress_bar(context):
-#         wm = context.window_manager
-#         wm.progress_begin(0, 100)  # Set the range of the progress bar (0-100)
-#         wm.progress_update(0)  # Initialize the progress bar
-
-#     def hide_progress_bar(context):
-#         wm = context.window_manager
-#         wm.progress_end()  # Close the progress bar
-        # bpy.ops.wm.progress_update(ProgressBar.progressbar_one_unit)
-
-
 class Baker():
 
     global node_group_name
@@ -170,7 +169,7 @@ class procedures():
 
         create_node_link(point1.outputs[0], point2.inputs[0])
 
-    def BSDF_baker_switcher(node_group_name: str, switch: bool) -> None:
+    def BSDF_baker_togler(node_group_name: str, switch: bool) -> None:
         if switch:
             procedures.link_switcher(node_group_name,
                                      "OutPreviewBakerData", "OutPreview")
